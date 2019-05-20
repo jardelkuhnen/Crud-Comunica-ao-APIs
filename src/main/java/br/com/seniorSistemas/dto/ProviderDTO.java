@@ -21,6 +21,6 @@ private Long id;
 	private String name;
 	
 	@CNPJ(message = "CNPJ inválido!")
-	private String CNPJ;
+	private String cnpj;
 	
 }

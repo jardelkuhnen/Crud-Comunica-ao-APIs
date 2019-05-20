@@ -13,14 +13,16 @@ public class Response<T> {
 	@Getter
 	@Setter
 	private T data;
-
-	@Setter
 	private List<String> errors;
 
 	public List<String> getErrors() {
 		if (this.errors == null) {
-			this.errors = new ArrayList<String>();
+			this.errors = new ArrayList<>();
 		}
 		return errors;
+	}
+
+	public void setErrors(List<String> errors) {
+		this.errors = errors;
 	}
 }

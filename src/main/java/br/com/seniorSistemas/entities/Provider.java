@@ -32,6 +32,6 @@ public class Provider implements Serializable {
 	private String name;
 	
 	@Column(name = "cnpj")
-	private String CNPJ;
+	private String cnpj;
 	
 }
