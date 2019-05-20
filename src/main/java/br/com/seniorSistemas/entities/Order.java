@@ -1,12 +1,14 @@
 //package br.com.seniorSistemas.entities;
 //
 //import java.io.Serializable;
+//import java.util.List;
 //
 //import javax.persistence.Column;
 //import javax.persistence.Entity;
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.GenerationType;
 //import javax.persistence.Id;
+//import javax.persistence.ManyToMany;
 //import javax.persistence.Table;
 //
 //import lombok.Getter;
@@ -25,15 +27,13 @@
 //	private static final long serialVersionUID = 1L;
 //
 //	@Id
-//	@GeneratedValue(strategy= GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 //	private Long id;
-//	
-//	@Column(name= "product")
-//	private String product;
 //
-////	@Column(name = "client_id")
-////	private Long clientId;
+//	@Column(name = "client")
+//	private Long client;
 //
-////	private List<Product> products;
+//	@ManyToMany(mappedBy="order")
+//	private List<Product> products;
 //
 //}
