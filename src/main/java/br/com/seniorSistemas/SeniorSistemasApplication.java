@@ -10,12 +10,17 @@ import br.com.seniorSistemas.entities.Client;
 import br.com.seniorSistemas.repositories.ClientRepository;
 import br.com.seniorSistemas.security.entities.Usuario;
 import br.com.seniorSistemas.security.enums.PerfilEnum;
+import br.com.seniorSistemas.security.repositories.UsuarioRepository;
+import br.com.seniorSistemas.utils.SenhaUtils;
 
 @SpringBootApplication
 public class SeniorSistemasApplication {
 
 	@Autowired
 	private ClientRepository repo;
+	
+	@Autowired
+	private UsuarioRepository userRepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SeniorSistemasApplication.class, args);
@@ -35,10 +40,12 @@ public class SeniorSistemasApplication {
 			c2.setCpf("09717775940");
 			repo.save(c2);
 			
-			Usuario usuario = new Usuario();
-			usuario.setEmail("jardelkuhnen@gmail.com");
-			usuario.setPerfil(PerfilEnum.ROLE_ACCESS);
-			usuario.setSenha("123456789");
+			Usuario user = new Usuario();
+			user.setEmail("jardelkuhnen@gmail.com");
+			user.setPerfil(PerfilEnum.ROLE_ADMIN);
+			user.setSenha(SenhaUtils.gerarBCrypt("123456789"));
+			
+			this.userRepo.save(user);
 			
 		};
 	}

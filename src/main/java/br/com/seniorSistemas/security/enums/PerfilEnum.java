@@ -1,5 +1,6 @@
 package br.com.seniorSistemas.security.enums;
 
 public enum PerfilEnum {
-	ROLE_ACCESS
+	ROLE_ADMIN,
+	ROLE_USUARIO;
 }

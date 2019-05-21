@@ -22,14 +22,14 @@ import br.com.seniorSistemas.services.ClientService;
 import br.com.seniorSistemas.utils.Response;
 
 @RestController
-@RequestMapping("api/client/")
+@RequestMapping("api/client")
 public class ClientController {
 
 	@Autowired
 	private ClientService clientService;
 
-	@PreAuthorize("hasAnyRole('ACCESS')")
 	@GetMapping("/listAll")
+//	@PreAuthorize("hasAnyRole('ADMIN')")
 	public List<Client> listAll() {
 		return clientService.listAll();
 	}
