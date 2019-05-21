@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 
 import br.com.seniorSistemas.entities.Client;
 import br.com.seniorSistemas.repositories.ClientRepository;
+import br.com.seniorSistemas.security.entities.Usuario;
+import br.com.seniorSistemas.security.enums.PerfilEnum;
 
 @SpringBootApplication
 public class SeniorSistemasApplication {
@@ -32,6 +34,12 @@ public class SeniorSistemasApplication {
 			c2.setName("jardel");
 			c2.setCpf("09717775940");
 			repo.save(c2);
+			
+			Usuario usuario = new Usuario();
+			usuario.setEmail("jardelkuhnen@gmail.com");
+			usuario.setPerfil(PerfilEnum.ROLE_ACCESS);
+			usuario.setSenha("123456789");
+			
 		};
 	}
 
