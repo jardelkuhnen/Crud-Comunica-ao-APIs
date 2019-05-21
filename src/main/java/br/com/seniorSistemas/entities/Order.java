@@ -9,8 +9,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,8 +36,11 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "client")
-	private Long client;
+//	@JoinColumn(name = "client_id", referencedColumnName = "id")
+//	@Fetch(FetchMode.SELECT)
+//	@OneToOne()
+	@Column(name = "client_id")
+	private Long clientId;
 
 	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
 	private List<ItemOrder> itensOrder;
