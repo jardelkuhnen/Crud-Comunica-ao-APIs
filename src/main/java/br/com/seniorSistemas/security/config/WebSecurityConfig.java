@@ -38,9 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
-	   return super.authenticationManagerBean();
+		return super.authenticationManagerBean();
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -53,11 +53,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		/**
+		 * Permissao para acessar H2 pela url
+		 */
+		httpSecurity.authorizeRequests().antMatchers("/console/**").permitAll();
+		httpSecurity.headers().frameOptions().disable();
+		
+		/**
+		 * Configuracao para a autenticao
+		 */
 		httpSecurity.csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/auth/**", "/h2-console/**").permitAll().anyRequest().authenticated();
+				.antMatchers("/auth/**").permitAll().anyRequest().authenticated();
+
+		httpSecurity.authorizeRequests().antMatchers("/").permitAll().and().authorizeRequests()
+				.antMatchers("/console/**").permitAll();
+		httpSecurity.csrf().disable();
+		httpSecurity.headers().frameOptions().disable();
+
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 		httpSecurity.headers().cacheControl();
+
 	}
 
 }

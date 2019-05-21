@@ -9,13 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,8 +22,8 @@ import lombok.ToString;
 @Entity
 @ToString
 @NoArgsConstructor
-@Table(name = "order")
-public class Order implements Serializable {
+@Table(name = "orders")
+public class Orders implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,10 +33,12 @@ public class Order implements Serializable {
 
 //	@JoinColumn(name = "client_id", referencedColumnName = "id")
 //	@Fetch(FetchMode.SELECT)
-//	@OneToOne()
-	@Column(name = "client_id")
+//	@ManyToOne()
+	@Column(name = "client_id", nullable = false)
 	private Long clientId;
-
+//
+//	@Column(name = "provider_id")
+//	private Long providerId;
 	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
 	private List<ItemOrder> itensOrder;
 

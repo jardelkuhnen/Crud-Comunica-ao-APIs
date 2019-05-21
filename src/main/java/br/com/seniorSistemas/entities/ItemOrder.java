@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -31,13 +32,18 @@ public class ItemOrder implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@JoinColumn(name = "product_id", referencedColumnName = "id")
+
+//	@JoinColumn(name = "product_id", referencedColumnName = "id")
+//	@Column(name = "product_id")
+	@JoinColumn(name = "product_id")
+	@Fetch(FetchMode.SELECT)
+	@OneToOne()
 	private Product product;
 
 	@ManyToOne()
 	@Fetch(FetchMode.SELECT)
 	@JoinColumn(name = "order_id", referencedColumnName = "id")
-	private Order order;
+//	@Column(name = "order_id")
+	private Orders order;
 
 }

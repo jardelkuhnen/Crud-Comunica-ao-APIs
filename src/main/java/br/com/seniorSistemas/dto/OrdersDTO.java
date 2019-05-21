@@ -5,8 +5,7 @@ import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import br.com.seniorSistemas.entities.Client;
-import br.com.seniorSistemas.entities.Product;
+import br.com.seniorSistemas.entities.ItemOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,14 +15,14 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class OrderDTO {
+public class OrdersDTO {
 
 	private Long id;
 
 	@NotNull(message = "O cliente do pedido não pode ser vazio!")
-	private Client client;
-
+	private Long clientId;
+	
 	@NotEmpty(message = "O pedido não pode ser vazio!")
-	private List<Product> products;
+	private List<ItemOrder> itensOrder;
 
 }

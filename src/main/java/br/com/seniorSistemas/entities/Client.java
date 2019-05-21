@@ -21,16 +21,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @Table(name = "client")
 public class Client implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(name = "name", nullable = false)
 	private String name;
-	
+
 	@Column(name = "cpf")
 	private String cpf;
 
