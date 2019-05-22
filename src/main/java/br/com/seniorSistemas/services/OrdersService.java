@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.seniorSistemas.dto.OrdersDTO;
+import br.com.seniorSistemas.entities.ItemOrder;
 import br.com.seniorSistemas.entities.Orders;
 import br.com.seniorSistemas.repositories.OrdersRepository;
 
@@ -30,7 +31,13 @@ public class OrdersService {
 		order.setClientId(orderDTO.getClientId());
 		order.setItensOrder(orderDTO.getItensOrder());
 		
+		order = orderRepository.save(order);
+		
+		for (ItemOrder item : order.getItensOrder()) {
+			item.setOrder(order);
+		}
 		orderRepository.save(order);
+		
 	}
 
 	public void update(@Valid OrdersDTO orderDTO) {

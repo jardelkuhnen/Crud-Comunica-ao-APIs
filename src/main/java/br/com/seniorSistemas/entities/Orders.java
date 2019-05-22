@@ -34,10 +34,8 @@ public class Orders implements Serializable {
 
 	@Column(name = "client_id")
 	private Long clientId;
-//
-//	@Column(name = "provider_id")
-//	private Long providerId;
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+
+	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<ItemOrder> itensOrder;
 
 }
