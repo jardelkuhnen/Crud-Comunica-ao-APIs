@@ -32,11 +32,7 @@ public class OrdersService {
 		order.setItensOrder(orderDTO.getItensOrder());
 		
 		order = orderRepository.save(order);
-		
-		for (ItemOrder item : order.getItensOrder()) {
-			item.setOrder(order);
-		}
-		orderRepository.save(order);
+		updateItensOrder(order);
 		
 	}
 
@@ -46,12 +42,20 @@ public class OrdersService {
 		order.setClientId(orderDTO.getClientId());
 		order.setItensOrder(orderDTO.getItensOrder());
 		
-		orderRepository.save(order);
+		order = orderRepository.save(order);
+		updateItensOrder(order);
 	}
 
 	public void delete(Long id) {
 		Orders order = orderRepository.findById(id).get();
 		orderRepository.delete(order);
+	}
+	
+	private void updateItensOrder(Orders order) {
+		for (ItemOrder item : order.getItensOrder()) {
+			item.setOrder(order);
+		}
+		orderRepository.save(order);
 	}
 
 }
