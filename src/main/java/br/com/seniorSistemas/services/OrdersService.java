@@ -31,7 +31,7 @@ public class OrdersService {
 
 	public void save(@Valid OrdersDTO orderDTO) {
 		Orders order = new Orders();
-		order.setClientId(orderDTO.getClientId());
+		order.setClient(orderDTO.getClient());
 		order.setItensOrder(orderDTO.getItensOrder());
 		
 		order = orderRepository.save(order);
@@ -42,7 +42,7 @@ public class OrdersService {
 	public void update(@Valid OrdersDTO orderDTO) {
 		Orders order = orderRepository.findById(orderDTO.getId()).get();
 		
-		order.setClientId(orderDTO.getClientId());
+		order.setClient(orderDTO.getClient());
 		order.setItensOrder(orderDTO.getItensOrder());
 		
 		order = orderRepository.save(order);
