@@ -27,7 +27,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @Table(name = "itens_order")
-public class ItemOrder implements Serializable {
+public class ItemOrders implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

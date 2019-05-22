@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.seniorSistemas.dto.OrdersDTO;
-import br.com.seniorSistemas.entities.ItemOrder;
+import br.com.seniorSistemas.entities.ItemOrders;
 import br.com.seniorSistemas.entities.Orders;
 import br.com.seniorSistemas.repositories.OrdersRepository;
 
@@ -17,6 +17,9 @@ public class OrdersService {
 
 	@Autowired
 	private OrdersRepository orderRepository;
+	
+	@Autowired
+	private ItemOrdersService itemOrderService;
 	
 	public List<Orders> listAll() {
 		return orderRepository.findAll();
@@ -48,11 +51,12 @@ public class OrdersService {
 
 	public void delete(Long id) {
 		Orders order = orderRepository.findById(id).get();
+		itemOrderService.deleteItens(order.getItensOrder());
 		orderRepository.delete(order);
 	}
 	
 	private void updateItensOrder(Orders order) {
-		for (ItemOrder item : order.getItensOrder()) {
+		for (ItemOrders item : order.getItensOrder()) {
 			item.setOrder(order);
 		}
 		orderRepository.save(order);

@@ -36,6 +36,6 @@ public class Orders implements Serializable {
 	private Long clientId;
 
 	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	private List<ItemOrder> itensOrder;
+	private List<ItemOrders> itensOrder;
 
 }

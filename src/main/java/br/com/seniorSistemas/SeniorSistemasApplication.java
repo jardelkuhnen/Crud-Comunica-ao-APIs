@@ -12,7 +12,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 import br.com.seniorSistemas.entities.Client;
-import br.com.seniorSistemas.entities.ItemOrder;
+import br.com.seniorSistemas.entities.ItemOrders;
 import br.com.seniorSistemas.entities.Orders;
 import br.com.seniorSistemas.entities.Product;
 import br.com.seniorSistemas.repositories.ClientRepository;
@@ -75,11 +75,11 @@ public class SeniorSistemasApplication {
 			Orders order = new Orders();
 			order.setClientId(new Long(1));
 			
-			ItemOrder item = new ItemOrder();
+			ItemOrders item = new ItemOrders();
 			item.setOrder(order);
 			item.setProduct(product);
 			
-			List<ItemOrder> itens = new ArrayList<ItemOrder>();
+			List<ItemOrders> itens = new ArrayList<ItemOrders>();
 			itens.add(item);
 			
 			order.setItensOrder(itens);
