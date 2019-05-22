@@ -81,7 +81,7 @@ public class OrderController {
 		Response<?> response = new Response<>();
 		
 		if (id == null) {
-			response.getErrors().add("Produto não localizado");
+			response.getErrors().add("Pedido não localizado");
 			return ResponseEntity.badRequest().body(response);
 		}
 		

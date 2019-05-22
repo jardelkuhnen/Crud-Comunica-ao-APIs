@@ -37,7 +37,7 @@ public class ProviderController {
 		Response<?> response = new Response<>();
 
 		if (id == null) {
-			response.getErrors().add("Cliente não localizado");
+			response.getErrors().add("Fornecedor não localizado");
 			return ResponseEntity.badRequest().body(response);
 		}
 
@@ -80,7 +80,7 @@ public class ProviderController {
 		Response<?> response = new Response<>();
 		
 		if (id == null) {
-			response.getErrors().add("Produto não localizado");
+			response.getErrors().add("Fornecedor não localizado");
 			return ResponseEntity.badRequest().body(response);
 		}
 		

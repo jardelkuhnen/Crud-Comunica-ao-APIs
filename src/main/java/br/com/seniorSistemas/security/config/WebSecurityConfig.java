@@ -54,9 +54,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		/**
+		 * permissao para acessar Documentacao com Swagger
+		 */
+		httpSecurity.authorizeRequests()
+		.antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources",
+				"/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**")
+		.permitAll().and().authorizeRequests().anyRequest().authenticated().and().csrf().disable();
+
+		/**
 		 * Permissao para acessar H2 pela url
 		 */
 		httpSecurity.authorizeRequests().antMatchers("/console/**").permitAll();
+		httpSecurity.headers().frameOptions().disable();
+		
+		httpSecurity.authorizeRequests().antMatchers("/swagger-ui.html").permitAll();
 		httpSecurity.headers().frameOptions().disable();
 		
 		/**
