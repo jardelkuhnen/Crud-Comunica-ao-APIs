@@ -3,6 +3,7 @@ package br.com.seniorSistemas.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,15 +32,12 @@ public class Orders implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-//	@JoinColumn(name = "client_id", referencedColumnName = "id")
-//	@Fetch(FetchMode.SELECT)
-//	@ManyToOne()
-	@Column(name = "client_id", nullable = false)
+	@Column(name = "client_id")
 	private Long clientId;
 //
 //	@Column(name = "provider_id")
 //	private Long providerId;
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<ItemOrder> itensOrder;
 
 }

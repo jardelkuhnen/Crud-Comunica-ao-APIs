@@ -2,7 +2,6 @@ package br.com.seniorSistemas.controllers;
 
 import java.util.List;
 
-import javax.persistence.criteria.Order;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,8 @@
 package br.com.seniorSistemas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.h2.server.web.WebServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,11 +12,16 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 import br.com.seniorSistemas.entities.Client;
+import br.com.seniorSistemas.entities.ItemOrder;
+import br.com.seniorSistemas.entities.Orders;
+import br.com.seniorSistemas.entities.Product;
 import br.com.seniorSistemas.repositories.ClientRepository;
+import br.com.seniorSistemas.repositories.ProductRepository;
 import br.com.seniorSistemas.security.entities.Usuario;
 import br.com.seniorSistemas.security.enums.PerfilEnum;
 import br.com.seniorSistemas.security.repositories.UsuarioRepository;
 import br.com.seniorSistemas.utils.SenhaUtils;
+import br.com.seniorSistemas.utils.WriteJSon;
 
 @SpringBootApplication
 public class SeniorSistemasApplication {
@@ -24,6 +32,9 @@ public class SeniorSistemasApplication {
 	@Autowired
 	private UsuarioRepository userRepo;
 	
+	@Autowired
+	private ProductRepository productRepo;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SeniorSistemasApplication.class, args);
 	}
@@ -31,7 +42,7 @@ public class SeniorSistemasApplication {
 	@Bean
 	public CommandLineRunner commandRunner() {
 		return args -> {
-
+			//Clientes
 			Client c = new Client();
 			c.setName("jardel");
 			c.setCpf("09717775940");
@@ -42,12 +53,39 @@ public class SeniorSistemasApplication {
 			c2.setCpf("09717775940");
 			repo.save(c2);
 			
+			//Usuario Acesso
 			Usuario user = new Usuario();
 			user.setEmail("jardelkuhnen@gmail.com");
 			user.setPerfil(PerfilEnum.ROLE_ADMIN);
 			user.setSenha(SenhaUtils.gerarBCrypt("123456789"));
+			userRepo.save(user);
 			
-			this.userRepo.save(user);
+			Product product = new Product();
+			product.setDescription("Cerveja Skol");
+			product.setPriceBuy(2.0);
+			product.setPriceSale(5.0);
+			productRepo.save(product);
+			
+			Product product2 = new Product();
+			product2.setDescription("Cerveja Itaipava");
+			product2.setPriceBuy(1.5);
+			product2.setPriceSale(4.5);
+			productRepo.save(product2);
+			
+			Orders order = new Orders();
+			order.setClientId(new Long(1));
+			
+			ItemOrder item = new ItemOrder();
+			item.setOrder(order);
+			item.setProduct(product);
+			
+			List<ItemOrder> itens = new ArrayList<ItemOrder>();
+			itens.add(item);
+			
+			order.setItensOrder(itens);
+			
+			WriteJSon.printJson(order);
+			
 			
 		};
 	}

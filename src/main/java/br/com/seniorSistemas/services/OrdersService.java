@@ -27,7 +27,7 @@ public class OrdersService {
 
 	public void save(@Valid OrdersDTO orderDTO) {
 		Orders order = new Orders();
-		order.setClientId(orderDTO.getId());
+		order.setClientId(orderDTO.getClientId());
 		order.setItensOrder(orderDTO.getItensOrder());
 		
 		orderRepository.save(order);

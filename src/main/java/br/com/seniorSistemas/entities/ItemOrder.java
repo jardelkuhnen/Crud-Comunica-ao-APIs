@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,17 +35,15 @@ public class ItemOrder implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-//	@JoinColumn(name = "product_id", referencedColumnName = "id")
-//	@Column(name = "product_id")
-	@JoinColumn(name = "product_id")
-	@Fetch(FetchMode.SELECT)
 	@OneToOne()
+	@Fetch(FetchMode.SELECT)
+	@JoinColumn(name = "product_id")
 	private Product product;
 
 	@ManyToOne()
+	@JsonIgnore 
 	@Fetch(FetchMode.SELECT)
 	@JoinColumn(name = "order_id", referencedColumnName = "id")
-//	@Column(name = "order_id")
 	private Orders order;
 
 }
