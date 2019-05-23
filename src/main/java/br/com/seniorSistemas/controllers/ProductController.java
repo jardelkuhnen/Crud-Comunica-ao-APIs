@@ -37,7 +37,7 @@ public class ProductController {
 		Response<?> response = new Response<>();
 
 		if (id == null) {
-			response.getErrors().add("Cliente não localizado");
+			response.getErrors().add("Produto não localizado");
 			return ResponseEntity.badRequest().body(response);
 		}
 

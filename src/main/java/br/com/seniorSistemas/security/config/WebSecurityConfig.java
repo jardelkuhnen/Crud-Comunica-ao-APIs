@@ -53,22 +53,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		/**
-		 * permissao para acessar Documentacao com Swagger
-		 */
-		httpSecurity.authorizeRequests()
-		.antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources",
-				"/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**")
-		.permitAll().and().authorizeRequests().anyRequest().authenticated().and().csrf().disable();
 
 		/**
 		 * Permissao para acessar H2 pela url
 		 */
 		httpSecurity.authorizeRequests().antMatchers("/console/**").permitAll();
 		httpSecurity.headers().frameOptions().disable();
+		httpSecurity.authorizeRequests()
 		
-		httpSecurity.authorizeRequests().antMatchers("/swagger-ui.html").permitAll();
-		httpSecurity.headers().frameOptions().disable();
+		/**
+		 * permissao para acessar Documentacao com Swagger
+		 */
+		.antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources",
+				"/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**", "/console/**")
+		.permitAll().and().authorizeRequests().anyRequest().authenticated().and().csrf().disable();
 		
 		/**
 		 * Configuracao para a autenticao
@@ -76,11 +74,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers("/auth/**").permitAll().anyRequest().authenticated();
-
-		httpSecurity.authorizeRequests().antMatchers("/").permitAll().and().authorizeRequests()
-				.antMatchers("/console/**").permitAll();
-		httpSecurity.csrf().disable();
-		httpSecurity.headers().frameOptions().disable();
 
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 		httpSecurity.headers().cacheControl();

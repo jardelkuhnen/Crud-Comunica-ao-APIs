@@ -28,7 +28,6 @@ public class ClientController {
 	private ClientService clientService;
 
 	@GetMapping("/listAll")
-//	@PreAuthorize("hasAnyRole('ADMIN')")
 	public List<Client> listAll() {
 		return clientService.listAll();
 	}
