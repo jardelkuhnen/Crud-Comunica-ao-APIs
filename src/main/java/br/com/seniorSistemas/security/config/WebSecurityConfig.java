@@ -59,14 +59,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 */
 		httpSecurity.authorizeRequests().antMatchers("/console/**").permitAll();
 		httpSecurity.headers().frameOptions().disable();
-		httpSecurity.authorizeRequests()
+		
 		
 		/**
 		 * permissao para acessar Documentacao com Swagger
 		 */
-		.antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources",
-				"/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**", "/console/**")
-		.permitAll().and().authorizeRequests().anyRequest().authenticated().and().csrf().disable();
+		httpSecurity.authorizeRequests().antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources",
+				"/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**")
+		.permitAll();
 		
 		/**
 		 * Configuracao para a autenticao
