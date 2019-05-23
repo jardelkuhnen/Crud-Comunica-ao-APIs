@@ -19,7 +19,7 @@ Para executar o projeto basta executar `mvn spring-boot:run` no pronpt de comand
  ## Documentação
  
  Para acessar a documentação basta executar o projeto e acessar a url: (http://localhost:8080/swagger-ui.html).
- Nessa página seráo listados todos os endpoints da api com exemplos de JSON a ser enviado para a correta utilização.
+ Nessa página serão listados todos os endpoints da api com exemplos de JSON a ser enviado para a correta utilização.
  
  ## Testes da Api
  
