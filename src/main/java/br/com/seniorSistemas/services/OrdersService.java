@@ -15,12 +15,15 @@ import br.com.seniorSistemas.repositories.OrdersRepository;
 @Service
 public class OrdersService {
 
-	@Autowired
 	private OrdersRepository orderRepository;
-	
-	@Autowired
 	private ItemOrdersService itemOrderService;
-	
+
+	@Autowired
+	public OrdersService(OrdersRepository orderRepository, ItemOrdersService itemOrderService) {
+		this.orderRepository = orderRepository;
+		this.itemOrderService = itemOrderService;
+	}
+
 	public List<Orders> listAll() {
 		return orderRepository.findAll();
 	}
@@ -29,13 +32,14 @@ public class OrdersService {
 		return orderRepository.findById(id).get();
 	}
 
-	public void save(@Valid OrdersDTO orderDTO) {
+	public Orders save(@Valid OrdersDTO orderDTO) {
 		Orders order = new Orders();
 		order.setClient(orderDTO.getClient());
 		order.setItensOrder(orderDTO.getItensOrder());
 		
 		order = orderRepository.save(order);
 		updateItensOrder(order);
+		return order;
 		
 	}
 
