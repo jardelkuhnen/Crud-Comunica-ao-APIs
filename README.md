@@ -27,6 +27,4 @@ Para executar o projeto basta executar `mvn spring-boot:run` no pronpt de comand
  
  Para visualizar os dados inseridos basta acesar na url(http://localhost:8080/console).
  
- A seguir segue vídeo demonstrando um teste a ser executado utilizando o Postman(https://www.getpostman.com/):
- https://embed.vidyard.com/share/srULUp9anL4mQ22DSzmX6o?
  
