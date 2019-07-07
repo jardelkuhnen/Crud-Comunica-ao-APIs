@@ -14,8 +14,12 @@ import br.com.seniorSistemas.repositories.ClientRepository;
 @Service
 public class ClientService {
 
-	@Autowired
 	private ClientRepository clientRepository;
+
+	@Autowired
+	public ClientService(ClientRepository clientRepository) {
+		this.clientRepository = clientRepository;
+	}
 
 	public void save(@Valid ClientDTO clientDTO) {
 
@@ -31,21 +35,33 @@ public class ClientService {
 	}
 
 	public Client loadById(Long id) {
-		return clientRepository.findById(id).get();
+		return clientRepository.getOne(id);
 	}
 
 	public void update(@Valid ClientDTO clientDTO) {
 		Client client = clientRepository.findById(clientDTO.getId()).get();
-		
+
 		client.setCpf(clientDTO.getCpf());
 		client.setName(clientDTO.getName());
-		
+
 		clientRepository.save(client);
 	}
 
 	public void delete(Long id) {
 		Client client = clientRepository.findById(id).get();
 		clientRepository.delete(client);
+	}
+	
+	public Boolean checkIfExists(Client client) {
+		
+		Client c = clientRepository.getOne(client.getId());
+
+		if(c != null) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 
 }

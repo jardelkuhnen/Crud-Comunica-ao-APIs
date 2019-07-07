@@ -59,11 +59,21 @@ public class OrdersService {
 		orderRepository.delete(order);
 	}
 	
-	private void updateItensOrder(Orders order) {
+	public void updateItensOrder(Orders order) {
 		for (ItemOrders item : order.getItensOrder()) {
 			item.setOrder(order);
 		}
 		orderRepository.save(order);
+	}
+	
+	public boolean checkSizeOrdersOK(OrdersDTO orderDTO) {
+		
+		if(orderDTO.getItensOrder() != null && orderDTO.getItensOrder().size() > 0) {
+			return true;
+		}
+			
+		return false;
+		
 	}
 
 }
