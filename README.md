@@ -28,3 +28,17 @@ Para executar o projeto basta executar `mvn spring-boot:run` no pronpt de comand
  Para visualizar os dados inseridos basta acesar na url(http://localhost:8080/console).
  
  
+## Aplicação disponibilizada no Heroku
+
+UrlBase: https://crud-vendas-api.herokuapp.com/
+
+Autenticação: 
+POST:
+UrlBase/auth
+{
+	"email": "seniorSistemas@email.com",
+	"senha": "123456789"
+}
+
+Demais urls acessíveis após autenticação.
+ 
